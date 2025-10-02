@@ -15,7 +15,7 @@ pipeline {
 
         stage('Build Jar') {
             steps {
-                sh "./mvnw clean package -DskipTests"
+                sh "mvn clean package -DskipTests"
             }
         }
 
