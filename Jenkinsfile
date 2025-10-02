@@ -13,11 +13,18 @@ pipeline {
             }
         }
 
-        stage('Build Jar') {
-            steps {
-                sh "mvn clean package -DskipTests"
-            }
-        }
+       stage('Prepare Maven Wrapper') {
+                   steps {
+                       // Make sure mvnw is executable
+                       sh 'chmod +x mvnw'
+                   }
+               }
+
+       stage('Build JAR') {
+           steps {
+               sh './mvnw clean package -DskipTests'
+           }
+       }
 
         stage('Build Docker Image') {
             steps {
